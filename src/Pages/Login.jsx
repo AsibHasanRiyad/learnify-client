@@ -1,7 +1,25 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/Authprovider";
+import { useContext } from "react";
 
 const Login = () => {
+  const {logIn} = useContext(AuthContext);
+  const handelLogin= (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log( email,password);
+    logIn(email, password)
+    .then(result =>{
+      console.log(result);
+    })
+    .catch(error =>{
+      console.log(error);
+    })
+
+  };
   return (
     <div
       className=" px-20"
@@ -106,15 +124,18 @@ const Login = () => {
         <div className="">
           <h1 className=" text-center text-white">Or</h1>
         </div>
-        <form className="mt-5 mb-2 w-80 max-w-screen-lg sm:w-96">
+        <form 
+        onSubmit={handelLogin}
+        className="mt-5 mb-2 w-80 max-w-screen-lg sm:w-96">
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="h6" className="-mb-3">
               Your Email
             </Typography>
             <Input
               size="lg"
+              name="email"
               placeholder="name@mail.com"
-              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3"
+              className="  !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -124,9 +145,10 @@ const Login = () => {
             </Typography>
             <Input
               type="password"
+              name="password"
               size="lg"
               placeholder="********"
-              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3"
+              className="  !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -134,7 +156,8 @@ const Login = () => {
           </div>
           <Button
             color="white"
-            className="mt-6 text-[#5737FB] text-base font-medium"
+            type="submit"
+            className="mt-10 text-[#5737FB] text-base font-medium"
             fullWidth
           >
             Sign In

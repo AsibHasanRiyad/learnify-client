@@ -2,11 +2,11 @@
 
 const Faq = () => {
   return (
-    <div className=" px-20">
-        <h1 className=" text-center text-white font-semibold text-4xl my-10">Frequently Asked Question</h1>
+    <div className=" px-4 md:px-8 lg:px-20">
+        <h1 className=" text-center text-white font-semibold text-4xl mt-20 mb-10">Frequently Asked Question</h1>
         <div className="join join-vertical w-full">
       <div className="collapse text-white collapse-arrow join-item border border-base-300">
-        <input type="radio" name="my-accordion-4" checked="checked" />
+        <input type="radio" name="my-accordion-4" />
         <div className="collapse-title text-xl font-medium">
         What is an online group study website?
         </div>

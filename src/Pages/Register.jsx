@@ -1,11 +1,48 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/Authprovider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+  const { createUser, logInWithGoogle } = useContext(AuthContext);
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const image = form.url.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, image, password);
+    createUser(email, password)
+      .then((result) => {
+        console.log(result);
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: image,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  //handel google login
+  const handelGoogleLogin = () => {
+    logInWithGoogle()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
-    <div className=" px-20"  style={{
+    <div
+      className=" px-20"
+      style={{
         backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='4560' preserveAspectRatio='none' viewBox='0 0 1440 4560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1026%26quot%3b)' fill='none'%3e%3crect width='1440' height='4560' x='0' y='0' fill='url(%26quot%3b%23SvgjsLinearGradient1027%26quot%3b)'%3e%3c/rect%3e%3cpath d='M1440 0L1356.89 0L1440 1041.46z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M1356.89 0L1440 1041.46L1440 2448.06L1345.3000000000002 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M1345.3 0L1440 2448.06L1440 2714.15L1176.75 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M1176.75 0L1440 2714.15L1440 3836.09L374.9 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 4560L254.85 4560L0 3448.81z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 3448.81L254.85 4560L617.24 4560L0 3228.25z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 3228.25L617.24 4560L714.26 4560L0 1363.87z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 1363.87L714.26 4560L1012.0699999999999 4560L0 756.7299999999999z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1026'%3e%3crect width='1440' height='4560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='-54.17%25' y1='82.89%25' x2='154.17%25' y2='17.11%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1027'%3e%3cstop stop-color='%230e2a47' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(87%2c 55%2c 251%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e")`,
-      }}>
+      }}
+    >
       <div className="navbar ">
         <Link to={"/"}>
           <img
@@ -21,9 +58,9 @@ const Register = () => {
         className=" min-h-screen flex justify-center items-center text-white"
       >
         <Typography variant="h4">Sign Up</Typography>
-        <div className=" flex justify-between items-center gap-6 mt-5">
+        <div className=" flex justify-between items-center gap-4 md:gap-10 mt-5">
           {/* google */}
-          <div className=" cursor-pointer">
+          <div onClick={handelGoogleLogin} className=" cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
@@ -103,26 +140,49 @@ const Register = () => {
         <div className="">
           <h1 className=" text-center text-white">Or</h1>
         </div>
-        <form className="mt-5 mb-2 w-80 max-w-screen-lg sm:w-96">
+        <form
+          onSubmit={handelSubmit}
+          className="mt-5 mb-2 w-72 md:w-96 max-w-screen-lg "
+        >
           <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="h6" className="-mb-3">
-              Your Name
-            </Typography>
-            <Input
-              size="lg"
-              placeholder="name@mail.com"
-              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
+            <div className=" grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <Typography variant="h6" className=" mb-4">
+                  Your Name
+                </Typography>
+                <Input
+                  size="lg"
+                  placeholder="name"
+                  name="name"
+                  className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
+                  labelProps={{
+                    className: "before:content-none after:content-none",
+                  }}
+                />
+              </div>
+              <div>
+                <Typography variant="h6" className=" mb-4">
+                  Photo URL
+                </Typography>
+                <Input
+                  size="lg"
+                  name="url"
+                  placeholder="photo url"
+                  className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
+                  labelProps={{
+                    className: "before:content-none after:content-none",
+                  }}
+                />
+              </div>
+            </div>
             <Typography variant="h6" className="-mb-3">
               Your Email
             </Typography>
             <Input
               size="lg"
+              name="email"
               placeholder="name@mail.com"
-              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3"
+              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -133,8 +193,9 @@ const Register = () => {
             <Input
               type="password"
               size="lg"
+              name="password"
               placeholder="********"
-              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3"
+              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -142,8 +203,9 @@ const Register = () => {
           </div>
           <Button
             color="white"
-            className="mt-6 text-[#5737FB] text-base font-medium"
+            className="mt-10 text-[#5737FB] text-base font-medium"
             fullWidth
+            type="submit"
           >
             Sign Up
           </Button>

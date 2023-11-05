@@ -1,0 +1,28 @@
+ [
+      {
+        "id": 1,
+        "featureName": "Study Groups",
+        "image": "https://i.ibb.co/7b4STDm/icons8-discussion-48.png"
+      },
+      {
+        "id": 2,
+        "featureName": "Video Conferencing",
+        "image": "https://i.ibb.co/P5C9b3V/icons8-file-sharing-64.png"
+      },
+      {
+        "id": 3,
+        "featureName": "File Sharing",
+        "image": "https://i.ibb.co/vxzHQt5/icons8-video-camera-48.png"
+      },
+      {
+        "id": 4,
+        "featureName": "Discussion Forums",
+        "image": "https://i.ibb.co/j5x5Bdf/icons8-classroom-48.png"
+      },
+      {
+        "id": 5,
+        "featureName": "Study Material",
+        "image": "https://i.ibb.co/hK7TvNm/icons8-study-48.png"
+      }
+    ]
+  

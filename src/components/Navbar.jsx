@@ -1,7 +1,15 @@
 import { NavLink } from "react-router-dom";
-import '../CSS/Nav.css'
+import "../CSS/Nav.css";
+import { AuthContext } from "../providers/Authprovider";
+import { useContext } from "react";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handelLogout = () =>{
+    logOut()
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  }
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -30,7 +38,7 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          <div className="flex-1 px-2 mx-2">
+          <div className="flex-1 ">
             <img
               className=" w-48"
               src="https://i.ibb.co/LpW157k/learnifycom-high-resolution-logo-white-transparent.png"
@@ -38,7 +46,7 @@ const Navbar = () => {
             />
           </div>
           <div className="flex-none hidden lg:block">
-            <ul className="flex flex-row gap-5 text-white">
+            <ul className="flex flex-row gap-5 items-center text-white">
               <li className=" hover:text-green-300 ">
                 <NavLink
                   to={"/"}
@@ -61,7 +69,69 @@ const Navbar = () => {
                 </NavLink>
               </li>
               |
-              <li className=" hover:text-green-300">
+              {
+                user && <>
+                                <li>
+                  <NavLink
+                  to={"/createAssignments"}
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
+                >
+                  Create Assignments
+                </NavLink>
+                </li>
+                |
+                <li>
+                  <NavLink
+                  to={"/myAssignments"}
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
+                >
+                  My Assignments
+                </NavLink>
+                </li>
+                |
+                <li>
+                  <NavLink
+                  to={"/submittedAssignments"}
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
+                >
+                  Submitted Assignments
+                </NavLink>
+                </li>
+                </>
+              }
+              {
+                user? 
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar bg-[#5737FB] ">
+                    <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img src={user?.photoURL} />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-[#5737FB] rounded-box w-52"
+                >
+                  <li>
+                    <a className="justify-between">
+                      Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a>{user?.displayName}</a>
+                  </li>
+                  <li>
+                    <button onClick={handelLogout}>Logout</button>
+                  </li>
+                </ul>
+              </div>
+                :
+                <li className=" hover:text-green-300">
                 <NavLink
                   to={"/login"}
                   className={({ isActive, isPending }) =>
@@ -71,6 +141,9 @@ const Navbar = () => {
                   Login
                 </NavLink>
               </li>
+              }
+            
+              
             </ul>
           </div>
         </div>
@@ -86,35 +159,35 @@ const Navbar = () => {
         <ul className="menu p-4 w-60 min-h-full bg-base-200">
           {/* Sidebar content here */}
           <li className=" hover:text-green-300 ">
-                <NavLink
-                  to={"/"}
-                  className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                  }
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li className=" hover:text-green-300">
-                <NavLink
-                  to={"/assignments"}
-                  className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                  }
-                >
-                  Assignments
-                </NavLink>
-              </li>
-              <li className=" hover:text-green-300">
-                <NavLink
-                  to={"/login"}
-                  className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                  }
-                >
-                  Login
-                </NavLink>
-              </li>
+            <NavLink
+              to={"/"}
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li className=" hover:text-green-300">
+            <NavLink
+              to={"/assignments"}
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              Assignments
+            </NavLink>
+          </li>
+          <li className=" hover:text-green-300">
+            <NavLink
+              to={"/login"}
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              Login
+            </NavLink>
+          </li>
         </ul>
       </div>
     </div>

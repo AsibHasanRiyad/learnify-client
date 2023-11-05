@@ -4,6 +4,9 @@ import MainLayout from "../layout/MainLayout";
 import Login from "../pages/Login";
 import Assignments from "../Pages/Assignments";
 import Register from "../pages/Register";
+import CreateAssignment from "../Pages/CreateAssignment";
+import MyAssignments from "../Pages/MyAssignments";
+import SubmittedAssignments from "../Pages/SubmittedAssignments";
 
 
 const MainRoutes = createBrowserRouter([
@@ -18,6 +21,18 @@ const MainRoutes = createBrowserRouter([
             {
                 path:'/assignments',
                 element:<Assignments></Assignments>
+            },
+            {
+                path:'/createAssignments',
+                element:<CreateAssignment></CreateAssignment>
+            },
+            {
+                path:'/myAssignments',
+                element:<MyAssignments></MyAssignments>
+            },
+            {
+                path:'/submittedAssignments',
+                element:<SubmittedAssignments></SubmittedAssignments>
             },
         ]
     },
