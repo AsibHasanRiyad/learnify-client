@@ -1,11 +1,13 @@
-import { useLoaderData } from "react-router-dom";
 import Assignment from "./Assignment";
 import { FaArrowDown } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../providers/Authprovider";
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [level, setLevel] = useState("all");
+  const {user} = useContext(AuthContext)
+  console.log('sdfksdjsdf',user?.email);
   useEffect(() => {
     fetch("http://localhost:5001/assignments")
       .then((res) => res.json())
@@ -17,7 +19,6 @@ const Assignments = () => {
     e.preventDefault();
     setLevel(e.target.value);
   };
-  console.log(level);
   return (
     <div className=" px-20 mt-10">
       <h1 className=" flex justify-center items-center gap-2 text-4xl font-medium text-white text-center my-10">
@@ -41,42 +42,32 @@ const Assignments = () => {
       </div>
       <div className="overflow-x-auto">
         <table className="table">
+          <thead>
+            <tr className=" text-green-400 text-lg">
+              <th>Remove</th>
+              <th>Name</th>
+              <th>Created By</th>
+              <th>Marks</th>
+              <th>Details</th>
+              <th>Update</th>
+            </tr>
+          </thead>
           <tbody>
             <>
-              {/* {assignments.filter(ass => ass.value === level  ).map((assignment) => (
-                <Assignment
-                  key={assignment._id}
-                  assignment={assignment}
-                ></Assignment>
-              ))} */}
-              {/* {assignments
-                .filter((ass) => {
-                  if (ass.value === level) {
-                    return ass.value.includes(level)
-                  }
-                  if (ass.value !== level) {
-                    return ass;
-                  }
-                })
-                .map((assignment) => (
-                  <Assignment
-                    key={assignment._id}
-                    assignment={assignment}
-                  ></Assignment>
-                ))} */}
               {assignments
                 .filter((assignment) => {
                   if (assignment.value === level) {
-                    return assignment.value
-                  }
-                  else if (level === 'all') {
-                  return  assignment
+                    return assignment.value;
+                  } else if (level === "all") {
+                    return assignment;
                   }
                 })
                 .map((assignment) => (
                   <Assignment
                     key={assignment._id}
                     assignment={assignment}
+                    assignments={assignments}
+                    setAssignments={setAssignments}
                   ></Assignment>
                 ))}
             </>

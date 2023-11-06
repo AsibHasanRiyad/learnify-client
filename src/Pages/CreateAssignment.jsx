@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../providers/Authprovider";
 
 const CreateAssignment = () => {
+  const {user} = useContext(AuthContext);
+  const userEmail = user.email;
   const [value, setValue] = useState("");
   const handelSelect = (e) => {
     e.preventDefault();
@@ -15,7 +18,7 @@ const CreateAssignment = () => {
     const marks = form.marks.value;
     const url = form.url.value;
     const date = form.date.value;
-    const assignments = { title, description, marks, url, date, value };
+    const assignments = { title, description, marks, url, date, value, userEmail };
     console.log(assignments);
     // console.log(title, description, marks, url, date, value);
     fetch("http://localhost:5001/assignments", {
@@ -97,7 +100,7 @@ const CreateAssignment = () => {
                 <option disabled selected>
                   Choose Difficulty Level
                 </option>
-                <option value="easy">Easy</option>
+                <option value="Easy">Easy</option>
                 <option value="Medium">Medium</option>
                 <option value="Hard">Hard</option>
               </select>

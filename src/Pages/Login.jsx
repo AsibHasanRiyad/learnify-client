@@ -4,7 +4,7 @@ import { AuthContext } from "../providers/Authprovider";
 import { useContext } from "react";
 
 const Login = () => {
-  const {logIn} = useContext(AuthContext);
+  const {logIn, logInWithGoogle} = useContext(AuthContext);
   const handelLogin= (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,8 +18,17 @@ const Login = () => {
     .catch(error =>{
       console.log(error);
     })
-
   };
+    //handel google login
+    const handelGoogleLogin = () => {
+      logInWithGoogle()
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
   return (
     <div
       className=" px-20"
@@ -44,7 +53,7 @@ const Login = () => {
         <Typography variant="h4">Sign In</Typography>
         <div className=" flex justify-between items-center gap-6 mt-5">
           {/* google */}
-          <div className=" cursor-pointer">
+          <div onClick={handelGoogleLogin} className=" cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
