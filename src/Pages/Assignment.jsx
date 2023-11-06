@@ -8,7 +8,7 @@ import { AuthContext } from "../providers/Authprovider";
 const Assignment = ({ assignment, setAssignments, assignments}) => {
   const { title, marks, url, value, userEmail, _id } = assignment;
   const {user} = useContext(AuthContext);
-  console.log(user?.email);
+  // console.log(user?.email);
 
   //delete
   const handelDelete = (_id) => {
@@ -96,9 +96,11 @@ const Assignment = ({ assignment, setAssignments, assignments}) => {
         </Link>
       </td>
       <th>
+        <Link to={`/updateAssignment/${_id}`}>
         <button className="btn btn-ghost btn-sm hover:bg-green-500">
           Update
         </button>
+        </Link>
       </th>
     </tr>
   );

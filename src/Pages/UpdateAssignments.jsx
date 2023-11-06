@@ -1,16 +1,27 @@
+// import { useContext, useState } from "react";
+// import Swal from "sweetalert2";
+// import { AuthContext } from "../providers/Authprovider";
 import { useContext, useState } from "react";
-import Swal from "sweetalert2";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/Authprovider";
+import Swal from "sweetalert2";
 
-const CreateAssignment = () => {
+const UpdateAssignment = () => {
+    const data = useLoaderData();
+    // console.log(data);
+    const { title, marks, url, value,description, date, _id, userEmail } = data;
   const {user} = useContext(AuthContext);
-  const userEmail = user?.email;
-  const [value, setValue] = useState("");
+  const email = user?.email;
+  const [level, setLevel] = useState("");
   const handelSelect = (e) => {
     e.preventDefault();
-    setValue(e.target.value);
+    // setLevel(e.target.value);
+    // console.log('CHanginng');
+    // console.log(e.target.value);
+    setLevel(e.target.value)
   };
-  const handelSubmit = (e) => {
+//   console.log(level);
+  const  handelUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
@@ -18,37 +29,45 @@ const CreateAssignment = () => {
     const marks = form.marks.value;
     const url = form.url.value;
     const date = form.date.value;
-    const assignments = { title, description, marks, url, date, value, userEmail };
-    console.log(assignments);
-    // console.log(title, description, marks, url, date, value);
-    fetch("http://localhost:5001/assignments", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(assignments)
-    })
-    .then(res => res.json())
-    .then(data =>{
-        console.log(data);
-        if (data.insertedId) {
-            Swal.fire({
-                icon: "success",
-                title: "Congratulation",
-                text: "Assignment Added",
-                // footer: '<a href="#">Why do I have this issue?</a>'
-              });
-        }
-    })
+    const updatedData = { title, description, marks, url, date, level };
+    // console.log(updatedData);
+    if (email === userEmail) {
+        fetch(`http://localhost:5001/assignments/${_id}`, {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(updatedData)
+          })
+          .then(res => res.json())
+          .then(data =>{
+              console.log(data);
+              if (data.modifiedCount) {
+                  Swal.fire({
+                      icon: "success",
+                      title: "Congratulation",
+                      text: "Assignment Updated",
+                    });
+              }
+          })
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Unauthorized",
+            text: "The assignment's creator alone can Update it",
+          });
+    }
   };
   return (
     <div className=" min-h-screen flex items-center justify-center">
       <section className=" w-[70vw] p-6 mx-auto bg-transparent rounded-md dark:bg-gray-800">
         <h2 className="text-4xl mb-10 text-center font-semibold text-gray-200 capitalize dark:text-white">
-          Create Assignments
+          Update Assignments
         </h2>
 
-        <form onSubmit={handelSubmit}>
+        <form 
+        onSubmit={ handelUpdate}
+        >
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
               <label className="text-gray-200 dark:text-gray-200">Title</label>
@@ -56,6 +75,7 @@ const CreateAssignment = () => {
                 type="text"
                 name="title"
                 required
+                defaultValue={title}
                 className="block w-full px-4 py-3 mt-2 text-gray-600 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
@@ -67,6 +87,7 @@ const CreateAssignment = () => {
               <input
                 type="text"
                 name="description"
+                defaultValue={description}
                 required
                 className="block w-full px-4 py-3 mt-2 text-gray-600 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
@@ -77,6 +98,7 @@ const CreateAssignment = () => {
               <input
                 name="marks"
                 type="text"
+                defaultValue={marks}
                 required
                 className="block w-full px-4 py-3 mt-2 text-gray-600 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
@@ -89,6 +111,7 @@ const CreateAssignment = () => {
               <input
                 name="url"
                 type="text"
+                defaultValue={url}
                 required
                 className="block w-full px-4 py-3 mt-2 text-gray-600 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
@@ -100,10 +123,10 @@ const CreateAssignment = () => {
               <select
                 onChange={handelSelect}
                 required
-                value={"Easy"}
+                defaultValue={value}
                 className="select select-primary block w-full px-4  mt-2 text-gray-600 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               >
-                <option disabled >
+                <option disabled>
                   Choose Difficulty Level
                 </option>
                 <option value="Easy">Easy</option>
@@ -119,6 +142,7 @@ const CreateAssignment = () => {
                 type="date"
                 name="date"
                 required
+                defaultValue={date}
                 className="block w-full px-4 py-3 mt-2 text-gray-600 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
@@ -129,7 +153,7 @@ const CreateAssignment = () => {
               type="submit"
               className="px-8 py-3 leading-5 text-[#4533CF] transition-colors duration-300 transform bg-white rounded-md hover:bg-[#684BFB] hover:text-white focus:outline-none focus:bg-green-400 focus:text-white"
             >
-              Save
+              Update
             </button>
           </div>
         </form>
@@ -138,4 +162,4 @@ const CreateAssignment = () => {
   );
 };
 
-export default CreateAssignment;
+export default UpdateAssignment;

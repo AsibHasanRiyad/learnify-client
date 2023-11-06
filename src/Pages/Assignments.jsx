@@ -1,13 +1,12 @@
 import Assignment from "./Assignment";
 import { FaArrowDown } from "react-icons/fa";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/Authprovider";
+import { useEffect, useState } from "react";
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [level, setLevel] = useState("all");
-  const {user} = useContext(AuthContext)
-  console.log('sdfksdjsdf',user?.email);
+  // const {user} = useContext(AuthContext)
+  // console.log('sdfksdjsdf',user?.email);
   useEffect(() => {
     fetch("http://localhost:5001/assignments")
       .then((res) => res.json())
