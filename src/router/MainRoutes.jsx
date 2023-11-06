@@ -20,7 +20,8 @@ const MainRoutes = createBrowserRouter([
             },
             {
                 path:'/assignments',
-                element:<Assignments></Assignments>
+                element:<Assignments></Assignments>,
+                loader: () => fetch('http://localhost:5001/assignments')
             },
             {
                 path:'/createAssignments',
