@@ -8,7 +8,7 @@ const MyAssignments = () => {
   const [level, setLevel] = useState("all");
   const {user} = useContext(AuthContext)
   useEffect(() => {
-    fetch(`http://localhost:5001/submittedAssignments?submittedBy=${user?.email}`)
+    fetch(`http://localhost:5001/submittedAssignments?submittedBy=${user?.email}`,{credentials:'include'})
       .then((res) => res.json())
       .then((data) => {
         setAssignments(data);

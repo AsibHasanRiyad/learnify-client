@@ -8,7 +8,7 @@ const Navbar = () => {
   // console.log(user?.displayName);
   const handelLogout = () => {
     logOut()
-      .then((data) => console.log(data))
+      .then((data) => console.log('Logout',data))
       .catch((error) => console.log(error));
   };
   return (

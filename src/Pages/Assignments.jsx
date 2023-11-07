@@ -1,19 +1,20 @@
 import Assignment from "./Assignment";
 import { FaArrowDown } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../providers/Authprovider";
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [level, setLevel] = useState("all");
-  // const {user} = useContext(AuthContext)
+  const {user} = useContext(AuthContext)
   // console.log('sdfksdjsdf',user?.email);
   useEffect(() => {
-    fetch("http://localhost:5001/assignments")
+    fetch(`http://localhost:5001/assignments?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setAssignments(data);
       });
-  }, []);
+  }, [user?.email]);
   const handelSelect = (e) => {
     e.preventDefault();
     setLevel(e.target.value);

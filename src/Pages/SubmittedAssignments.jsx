@@ -6,7 +6,7 @@ const SubmittedAssignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [level, setLevel] = useState("all");
   useEffect(() => {
-    fetch("http://localhost:5001/submittedAssignments")
+    fetch("http://localhost:5001/submittedAssignments",{credentials:'include'})
       .then((res) => res.json())
       .then((data) => {
         // setAssignments(data);

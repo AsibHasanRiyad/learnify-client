@@ -156,7 +156,7 @@ const Login = () => {
               size="lg"
               name="email"
               placeholder="name@mail.com"
-              className="  !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
+              className="  !border-t- white-200 focus:!border-t-gray-900 pl-3 text-gray-200"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -169,7 +169,7 @@ const Login = () => {
               name="password"
               size="lg"
               placeholder="********"
-              className="  !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
+              className="  !border-t- white-200 focus:!border-t-gray-900 pl-3 text-gray-200"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
