@@ -14,7 +14,7 @@ const TakeAssignment = () => {
     const pdf = form.pdf?.value;
     const note = form.note?.value;
     const submittedAssignments = {
-        pdf, note, submittedBy, title, marks, value, description, date
+        pdf, note, submittedBy, title, marks, value, description, date, status :'Pending'
     };
     // console.log(submittedAssignments);
     // console.log(title, description, marks, date, value);

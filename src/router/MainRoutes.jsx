@@ -50,7 +50,7 @@ const MainRoutes = createBrowserRouter([
             },
             {
                 path:'/takeAssignment/:id',
-                element:<TakeAssignment><UpdateAssignments></UpdateAssignments></TakeAssignment>,
+                element:<PrivateRoutes><TakeAssignment></TakeAssignment></PrivateRoutes>,
                 loader: ({params}) => fetch(`http://localhost:5001/assignments/${params.id}`)
             },
         ]

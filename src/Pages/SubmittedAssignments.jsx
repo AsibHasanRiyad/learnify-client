@@ -1,6 +1,6 @@
-import Assignment from "./Assignment";
 import { FaArrowDown } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import SubmittedAssignment from "./SubmittedAssignment";
 
 const SubmittedAssignments = () => {
   const [assignments, setAssignments] = useState([]);
@@ -22,7 +22,7 @@ const SubmittedAssignments = () => {
     <div className=" px-4 md:px-8 lg:px-20 mt-10">
       <h1 className=" flex justify-center items-center gap-2 text-4xl font-medium text-white text-center my-10">
         {" "}
-        Current Assignments{" "}
+        Submitted Assignments{" "}
         <FaArrowDown className=" text-green-300"></FaArrowDown>{" "}
       </h1>
       <div className=" flex justify-end">
@@ -43,12 +43,11 @@ const SubmittedAssignments = () => {
         <table className="table">
           <thead>
             <tr className=" text-green-400 text-lg">
-              <th>Remove</th>
               <th>Name</th>
-              <th>Created By</th>
-              <th>Marks</th>
-              <th>Details</th>
-              <th>Update</th>
+              <th>Submitted By</th>
+              <th>Total Marks</th>
+              <th>Status</th>
+              <th>Give Marks</th>
             </tr>
           </thead>
           <tbody>
@@ -62,12 +61,12 @@ const SubmittedAssignments = () => {
                   }
                 })
                 .map((assignment) => (
-                  <Assignment
+                  <SubmittedAssignment
                     key={assignment._id}
                     assignment={assignment}
                     assignments={assignments}
                     setAssignments={setAssignments}
-                  ></Assignment>
+                  ></SubmittedAssignment>
                 ))}
             </>
           </tbody>
