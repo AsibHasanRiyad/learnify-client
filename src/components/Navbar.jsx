@@ -5,6 +5,7 @@ import { useContext } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  // console.log(user?.displayName);
   const handelLogout = () =>{
     logOut()
       .then((data) => console.log(data))

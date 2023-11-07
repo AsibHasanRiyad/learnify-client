@@ -1,12 +1,17 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/Authprovider";
 import { useContext } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const {logIn, logInWithGoogle} = useContext(AuthContext);
+  const location = useLocation();
+  // console.log(location);
+  const navigate = useNavigate()
   const handelLogin= (e) => {
     e.preventDefault();
+    const toastId = toast.loading('Logging In....')
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -14,19 +19,26 @@ const Login = () => {
     logIn(email, password)
     .then(result =>{
       console.log(result);
+      toast.success('Logged In...', {id: toastId});
+      navigate(location?.state ? location?.state : '/')
     })
     .catch(error =>{
       console.log(error);
+      toast.error(error.message, {id: toastId})
     })
   };
     //handel google login
     const handelGoogleLogin = () => {
+      const toastId = toast.loading('Logging In....')
       logInWithGoogle()
         .then((result) => {
           console.log(result);
+          toast.success('Logged In...', {id: toastId});
+          navigate(location?.state ? location?.state : '/')
         })
         .catch((error) => {
           console.log(error);
+          toast.error(error.message, {id: toastId})
         });
     };
   return (

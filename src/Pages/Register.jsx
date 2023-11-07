@@ -1,12 +1,15 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/Authprovider";
 import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const { createUser, logInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate()
   const handelSubmit = (e) => {
+    const toastId = toast.loading('Logging In....')
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -21,19 +24,26 @@ const Register = () => {
           displayName: name,
           photoURL: image,
         });
+        toast.success('Logged In...', {id: toastId});
+      navigate(location?.state ? location?.state : '/')
       })
       .catch((error) => {
         console.log(error);
+        toast.error(error.message, {id: toastId})
       });
   };
   //handel google login
   const handelGoogleLogin = () => {
+    const toastId = toast.loading('Logging In....')
     logInWithGoogle()
       .then((result) => {
         console.log(result);
+        toast.success('Logged In...', {id: toastId});
+      navigate(location?.state ? location?.state : '/')
       })
       .catch((error) => {
         console.log(error);
+        toast.error(error.message, {id: toastId})
       });
   };
   return (
@@ -154,7 +164,7 @@ const Register = () => {
                   size="lg"
                   placeholder="name"
                   name="name"
-                  className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
+                  className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-gray-200"
                   labelProps={{
                     className: "before:content-none after:content-none",
                   }}
@@ -168,7 +178,7 @@ const Register = () => {
                   size="lg"
                   name="url"
                   placeholder="photo url"
-                  className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
+                  className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-gray-200"
                   labelProps={{
                     className: "before:content-none after:content-none",
                   }}
@@ -182,7 +192,7 @@ const Register = () => {
               size="lg"
               name="email"
               placeholder="name@mail.com"
-              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
+              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-gray-200"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -195,7 +205,7 @@ const Register = () => {
               size="lg"
               name="password"
               placeholder="********"
-              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-slate-800"
+              className=" !border-t- white-200 focus:!border-t-gray-900 pl-3 text-gray-200"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}

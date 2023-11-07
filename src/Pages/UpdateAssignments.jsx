@@ -2,15 +2,16 @@
 // import Swal from "sweetalert2";
 // import { AuthContext } from "../providers/Authprovider";
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/Authprovider";
 import Swal from "sweetalert2";
 
 const UpdateAssignment = () => {
-    const data = useLoaderData();
-    // console.log(data);
-    const { title, marks, url, value,description, date, _id, userEmail } = data;
-  const {user} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const data = useLoaderData();
+  // console.log(data);
+  const { title, marks, url, value, description, date, _id, userEmail } = data;
+  const { user } = useContext(AuthContext);
   const email = user?.email;
   const [level, setLevel] = useState("");
   const handelSelect = (e) => {
@@ -18,10 +19,10 @@ const UpdateAssignment = () => {
     // setLevel(e.target.value);
     // console.log('CHanginng');
     // console.log(e.target.value);
-    setLevel(e.target.value)
+    setLevel(e.target.value);
   };
-//   console.log(level);
-  const  handelUpdate = (e) => {
+  //   console.log(level);
+  const handelUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
@@ -32,30 +33,31 @@ const UpdateAssignment = () => {
     const updatedData = { title, description, marks, url, date, level };
     // console.log(updatedData);
     if (email === userEmail) {
-        fetch(`http://localhost:5001/assignments/${_id}`, {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(updatedData)
-          })
-          .then(res => res.json())
-          .then(data =>{
-              console.log(data);
-              if (data.modifiedCount) {
-                  Swal.fire({
-                      icon: "success",
-                      title: "Congratulation",
-                      text: "Assignment Updated",
-                    });
-              }
-          })
-    }else{
-        Swal.fire({
-            icon: "error",
-            title: "Unauthorized",
-            text: "The assignment's creator alone can Update it",
-          });
+      fetch(`http://localhost:5001/assignments/${_id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.modifiedCount) {
+            Swal.fire({
+              icon: "success",
+              title: "Congratulation",
+              text: "Assignment Updated",
+            });
+          }
+          navigate('/assignments')
+        });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Unauthorized",
+        text: "The assignment's creator alone can Update it",
+      });
     }
   };
   return (
@@ -65,9 +67,7 @@ const UpdateAssignment = () => {
           Update Assignments
         </h2>
 
-        <form 
-        onSubmit={ handelUpdate}
-        >
+        <form onSubmit={handelUpdate}>
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
               <label className="text-gray-200 dark:text-gray-200">Title</label>
@@ -126,9 +126,7 @@ const UpdateAssignment = () => {
                 defaultValue={value}
                 className="select select-primary block w-full px-4  mt-2 text-gray-600 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               >
-                <option disabled>
-                  Choose Difficulty Level
-                </option>
+                <option disabled>Choose Difficulty Level</option>
                 <option value="Easy">Easy</option>
                 <option value="Medium">Medium</option>
                 <option value="Hard">Hard</option>
