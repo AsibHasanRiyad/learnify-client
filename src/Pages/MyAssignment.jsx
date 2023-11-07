@@ -4,7 +4,7 @@
 // import { AuthContext } from "../providers/Authprovider";
 
 const MyAssignment = ({ assignment }) => {
-  const { title, marks, submittedBy, obtainedMarks, status } = assignment;
+  const { title, marks, feedback, obtainedMarks, status } = assignment;
   //   const {user} = useContext(AuthContext);
   // console.log(user?.email);
 
@@ -14,9 +14,6 @@ const MyAssignment = ({ assignment }) => {
         <h1>{title}</h1>
       </td>
       <td>
-        <h1>{submittedBy}</h1>
-      </td>
-      <td>
         <h1>{marks}</h1>
       </td>
       <td>
@@ -24,6 +21,9 @@ const MyAssignment = ({ assignment }) => {
       </td>
       <th>
         <h1>{obtainedMarks}</h1>
+      </th>
+      <th>
+        <h1>{feedback}</h1>
       </th>
     </tr>
   );

@@ -45,7 +45,7 @@ const SubmittedAssignments = () => {
         <table className="table">
           <thead>
             <tr className=" text-green-400 text-lg">
-              <th>Name</th>
+              <th>Title</th>
               <th>Submitted By</th>
               <th>Total Marks</th>
               <th>Status</th>

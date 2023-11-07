@@ -43,11 +43,11 @@ const MyAssignments = () => {
         <table className="table">
           <thead>
             <tr className=" text-green-400 text-lg">
-              <th>Name</th>
-              <th>Submitted By</th>
+              <th>Title</th>
               <th>Total Marks</th>
               <th>Status</th>
               <th>Obtained Marks</th>
+              <th>Feedback</th>
             </tr>
           </thead>
           <tbody>
