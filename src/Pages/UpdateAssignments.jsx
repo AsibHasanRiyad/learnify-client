@@ -62,7 +62,7 @@ const UpdateAssignment = () => {
   };
   return (
     <div className=" min-h-screen flex items-center justify-center">
-      <section className=" w-[70vw] p-6 mx-auto bg-transparent rounded-md dark:bg-gray-800">
+      <section className=" w-full lg:w-[70vw] p-6 mx-auto bg-transparent rounded-md dark:bg-gray-800">
         <h2 className="text-4xl mb-10 text-center font-semibold text-gray-200 capitalize dark:text-white">
           Update Assignments
         </h2>
