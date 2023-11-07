@@ -31,20 +31,20 @@ const MainRoutes = createBrowserRouter([
             },
             {
                 path:'/myAssignments',
-                element:<MyAssignments></MyAssignments>
+                element:<PrivateRoutes><MyAssignments></MyAssignments></PrivateRoutes>
             },
             {
                 path:'/submittedAssignments',
-                element:<SubmittedAssignments></SubmittedAssignments>
+                element:<PrivateRoutes><SubmittedAssignments></SubmittedAssignments></PrivateRoutes>
             },
             {
                 path:'/viewAssignment/:id',
-                element:<ViewAssignments></ViewAssignments>,
+                element:<PrivateRoutes><ViewAssignments></ViewAssignments></PrivateRoutes>,
                 loader: () => fetch('http://localhost:5001/assignments')
             },
             {
                 path:'/updateAssignment/:id',
-                element:<UpdateAssignments></UpdateAssignments>,
+                element:<PrivateRoutes><UpdateAssignments></UpdateAssignments></PrivateRoutes>,
                 loader: ({params}) => fetch(`http://localhost:5001/assignments/${params.id}`)
             },
         ]
