@@ -14,7 +14,7 @@ const TakeAssignment = () => {
     const pdf = form.pdf?.value;
     const note = form.note?.value;
     const submittedAssignments = {
-        pdf, note, submittedBy
+        pdf, note, submittedBy, title, marks, value, description, date
     };
     // console.log(submittedAssignments);
     // console.log(title, description, marks, date, value);
@@ -32,7 +32,7 @@ const TakeAssignment = () => {
           Swal.fire({
             icon: "success",
             title: "Congratulation",
-            text: "Assignment Added",
+            text: "Assignment Submitted",
             // footer: '<a href="#">Why do I have this issue?</a>'
           });
         }
