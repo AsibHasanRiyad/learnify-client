@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 
 // import { useContext } from "react";
-import { Link } from "react-router-dom";
 // import { AuthContext } from "../providers/Authprovider";
 
 const MyAssignment = ({ assignment }) => {
-  const { title, marks, submittedBy, _id,status } = assignment;
+  const { title, marks, submittedBy, obtainedMarks, status } = assignment;
   //   const {user} = useContext(AuthContext);
   // console.log(user?.email);
 
@@ -24,11 +23,7 @@ const MyAssignment = ({ assignment }) => {
         <h1>{status}</h1>
       </td>
       <th>
-        <Link to={`/updateAssignment/${_id}`}>
-          <button className="btn btn-ghost btn-sm hover:bg-green-500">
-            Give Marks
-          </button>
-        </Link>
+        <h1>{obtainedMarks}</h1>
       </th>
     </tr>
   );

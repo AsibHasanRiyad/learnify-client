@@ -24,7 +24,7 @@ const SubmittedAssignment = ({ assignment }) => {
         <h1>{status}</h1>
       </td>
       <th>
-        <Link to={`/updateAssignment/${_id}`}>
+        <Link to={`/giveMarks/${_id}`}>
           <button className="btn btn-ghost btn-sm hover:bg-green-500">
             Give Marks
           </button>

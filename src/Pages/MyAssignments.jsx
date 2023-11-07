@@ -1,7 +1,7 @@
 import { FaArrowDown } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
-import SubmittedAssignment from "./SubmittedAssignment";
 import { AuthContext } from "../providers/Authprovider";
+import MyAssignment from "./MyAssignment";
 
 const MyAssignments = () => {
   const [assignments, setAssignments] = useState([]);
@@ -22,7 +22,7 @@ const MyAssignments = () => {
     <div className=" px-4 md:px-8 lg:px-20 mt-10">
       <h1 className=" flex justify-center items-center gap-2 text-4xl font-medium text-white text-center my-10">
         {" "}
-        Submitted Assignments{" "}
+        My Assignments{" "}
         <FaArrowDown className=" text-green-300"></FaArrowDown>{" "}
       </h1>
       <div className=" flex justify-end">
@@ -47,7 +47,7 @@ const MyAssignments = () => {
               <th>Submitted By</th>
               <th>Total Marks</th>
               <th>Status</th>
-              <th>Give Marks</th>
+              <th>Obtained Marks</th>
             </tr>
           </thead>
           <tbody>
@@ -61,12 +61,12 @@ const MyAssignments = () => {
                   }
                 })
                 .map((assignment) => (
-                  <SubmittedAssignment
+                  <MyAssignment
                     key={assignment._id}
                     assignment={assignment}
                     assignments={assignments}
                     setAssignments={setAssignments}
-                  ></SubmittedAssignment>
+                  ></MyAssignment>
                 ))}
             </>
           </tbody>
