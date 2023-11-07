@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 
 const ViewAssignments = () => {
   const { id } = useParams();
@@ -6,7 +6,7 @@ const ViewAssignments = () => {
   console.log(id, loadedData);
   const data = loadedData.find((data) => data._id === id);
   console.log(data);
-  const { title, url, description, userEmail, value, marks } = data;
+  const { title, url, description, userEmail, value, marks, _id } = data;
 
   return (
     <section className=" min-h-screen mt-20">
@@ -57,12 +57,13 @@ const ViewAssignments = () => {
             </div>
 
             <hr className="my-6 border-gray-200 dark:border-gray-700" />
-              <button
-                // onClick={handelCart}
+             <Link to={`/takeAssignment/${_id}`}>
+             <button
                 className=" flex  justify-center items-center gap-2 outline rounded py-2 px-4 my-4 text-green-400 outline-green-400 hover:outline-none hover:bg-green-400 hover:text-white transform hover:scale-105 transition duration-600 ease-in "
               >
                 Take Assignments
               </button>
+             </Link>
           </div>
         </div>
       </div>
