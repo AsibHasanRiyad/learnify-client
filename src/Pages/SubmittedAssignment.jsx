@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // import { AuthContext } from "../providers/Authprovider";
 
 const SubmittedAssignment = ({ assignment }) => {
-  const { title, marks, submittedBy, _id,status } = assignment;
+  const { title, marks, submittedBy, _id,status , submitterName} = assignment;
   //   const {user} = useContext(AuthContext);
   // console.log(user?.email);
 
@@ -15,7 +15,8 @@ const SubmittedAssignment = ({ assignment }) => {
         <h1>{title}</h1>
       </td>
       <td>
-        <h1>{submittedBy}</h1>
+        <h1 className=" text-lg text-gray-200">{submitterName}</h1>
+        <h1 className=" text-sm text-gray-400">{submittedBy}</h1>
       </td>
       <td>
         <h1>{marks}</h1>

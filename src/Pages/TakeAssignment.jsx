@@ -7,6 +7,8 @@ const TakeAssignment = () => {
   const data = useLoaderData();
   const {user} = useContext(AuthContext);
   const submittedBy = user?.email
+  const submitterName = user?.displayName
+  console.log(submitterName);
   const { title, marks, value, description, date, userEmail } = data;
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +16,7 @@ const TakeAssignment = () => {
     const pdf = form.pdf?.value;
     const note = form.note?.value;
     const submittedAssignments = {
-        pdf, note, submittedBy, title, marks, value, description, date, status :'Pending', obtainedMarks:'Not Checked'
+        pdf, note, submittedBy,submitterName, title, marks, value, description, date, status :'Pending', obtainedMarks:'Not Checked'
     };
     // console.log(submittedAssignments);
     // console.log(title, description, marks, date, value);
