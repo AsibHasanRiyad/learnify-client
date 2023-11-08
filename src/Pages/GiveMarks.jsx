@@ -2,6 +2,13 @@ import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
+// Import the main component
+import { Viewer, Worker } from '@react-pdf-viewer/core';
+
+// Import the styles
+import '@react-pdf-viewer/core/lib/styles/index.css';
+
+
 const GiveMarks = () => {
   const data = useLoaderData();
   const { title, marks, value, date, submittedBy, pdf, _id } = data;
@@ -23,7 +30,7 @@ const GiveMarks = () => {
       feedback,
       status: "Completed",
     };
-    fetch(`https://learnify-server-six.vercel.app/submittedAssignments/${_id}`, {
+    fetch(`http://localhost:5001/submittedAssignments/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -45,6 +52,8 @@ const GiveMarks = () => {
   };
   return (
     <section className="  dark:bg-gray-900">
+      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+</Worker>
       <Helmet>
       <title>Give Marks</title>
       </Helmet>
@@ -79,6 +88,7 @@ const GiveMarks = () => {
                 </span>
               </a>
             </h1>
+            <Viewer fileUrl={pdf} />;
           </div>
 
           <div className="p-4 py-6 rounded-lg bg-white dark:bg-gray-800 md:p-8">

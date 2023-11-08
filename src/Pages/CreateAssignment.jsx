@@ -22,7 +22,7 @@ const CreateAssignment = () => {
     const assignments = { title, description, marks, url, date, value, userEmail };
     console.log(assignments);
     // console.log(title, description, marks, url, date, value);
-    fetch("https://learnify-server-six.vercel.app/assignments", {
+    fetch("http://localhost:5001/assignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",

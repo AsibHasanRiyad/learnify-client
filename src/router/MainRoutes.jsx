@@ -28,7 +28,7 @@ const MainRoutes = createBrowserRouter([
             {
                 path:'/assignments',
                 element:<Assignments></Assignments>,
-                loader:() => fetch('https://learnify-server-six.vercel.app/assignmentsCount')
+                loader:() => fetch('http://localhost:5001/assignmentsCount')
             },
             {
                 path:'/createAssignments',
@@ -45,22 +45,22 @@ const MainRoutes = createBrowserRouter([
             {
                 path:'/viewAssignment/:id',
                 element:<PrivateRoutes><ViewAssignments></ViewAssignments></PrivateRoutes>,
-                loader: () => fetch('https://learnify-server-six.vercel.app/assignments')
+                loader: () => fetch('http://localhost:5001/assignments')
             },
             {
                 path:'/updateAssignment/:id',
                 element:<PrivateRoutes><UpdateAssignments></UpdateAssignments></PrivateRoutes>,
-                loader: ({params}) => fetch(`https://learnify-server-six.vercel.app/assignments/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5001/assignments/${params.id}`)
             },
             {
                 path:'/takeAssignment/:id',
                 element:<PrivateRoutes><TakeAssignment></TakeAssignment></PrivateRoutes>,
-                loader: ({params}) => fetch(`https://learnify-server-six.vercel.app/assignments/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5001/assignments/${params.id}`)
             },
             {
                 path:'/giveMarks/:id',
                 element:<PrivateRoutes><GiveMarks></GiveMarks></PrivateRoutes>,
-                loader: ({params}) => fetch(`https://learnify-server-six.vercel.app/submittedAssignments/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5001/submittedAssignments/${params.id}`)
             },
         ]
     },
