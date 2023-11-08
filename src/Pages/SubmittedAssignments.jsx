@@ -9,7 +9,7 @@ const SubmittedAssignments = () => {
   const [level, setLevel] = useState("all");
   const {user} = useContext(AuthContext)
   useEffect(() => {
-    fetch(`http://localhost:5001/submittedAssignments`,{credentials:'include'})
+    fetch(`https://learnify-server-six.vercel.app/submittedAssignments`,{credentials:'include'})
       .then((res) => res.json())
       .then((data) => {
         // setAssignments(data);

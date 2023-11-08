@@ -30,7 +30,7 @@ const Assignments = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5001/assignments?email=${user?.email}&page=${currentPage}&size=${assignmentPerPage}`)
+    fetch(`https://learnify-server-six.vercel.app/assignments?email=${user?.email}&page=${currentPage}&size=${assignmentPerPage}`)
       .then((res) => res.json())
       .then((data) => {
         setAssignments(data);
