@@ -2,25 +2,49 @@ import Assignment from "./Assignment";
 import { FaArrowDown } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/Authprovider";
+import { Helmet } from "react-helmet-async";
+import { useLoaderData } from "react-router-dom";
+import './../CSS/Assignments.css'
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [level, setLevel] = useState("all");
   const { user } = useContext(AuthContext);
   // console.log('sdfksdjsdf',user?.email);
+  const [currentPage ,setCurrentPage] = useState(0)
+  console.log(currentPage);
+
+  //pagination
+  const {count} = useLoaderData();
+  // console.log(count);
+  const assignmentPerPage = 5;
+  const numberOfPage = Math.ceil(count / assignmentPerPage);
+  // console.log(numberOfPage);
+  const pages = [];
+  for (let i = 0; i < numberOfPage; i++) {
+    pages.push(i)
+  }
+  // console.log(pages);
+
+
+
+
   useEffect(() => {
-    fetch(`http://localhost:5001/assignments?email=${user?.email}`)
+    fetch(`http://localhost:5001/assignments?email=${user?.email}&page=${currentPage}&size=${assignmentPerPage}`)
       .then((res) => res.json())
       .then((data) => {
         setAssignments(data);
       });
-  }, [user?.email]);
+  }, [user?.email, currentPage]);
   const handelSelect = (e) => {
     e.preventDefault();
     setLevel(e.target.value);
   };
   return (
     <div className=" px-4 md:px-8 lg:px-20 mt-10">
+      <Helmet>
+        <title>Assignment</title>
+      </Helmet>
       <h1 className=" flex justify-center items-center gap-2 text-4xl font-medium text-white text-center my-10">
         {" "}
         Current Assignments{" "}
@@ -71,6 +95,18 @@ const Assignments = () => {
             </>
           </tbody>
         </table>
+      </div>
+      
+      {/* pagination */}
+      <div className=" text-center mt-10 pagination">
+          {
+            pages.map(page => <button
+              onClick={() => setCurrentPage(page)}
+              className={
+                currentPage === page ? 'selected btn  mx-3 btn-sm' : 'btn mx-3 btn-sm'
+              }
+              key={page}> {page} </button>)
+          }
       </div>
     </div>
   );

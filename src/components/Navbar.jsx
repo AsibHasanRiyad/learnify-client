@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../CSS/Nav.css";
 import { AuthContext } from "../providers/Authprovider";
 import { useContext } from "react";
@@ -8,7 +8,7 @@ const Navbar = () => {
   // console.log(user?.displayName);
   const handelLogout = () => {
     logOut()
-      .then((data) => console.log('Logout',data))
+      .then((data) => console.log("Logout", data))
       .catch((error) => console.log(error));
   };
   return (
@@ -40,11 +40,13 @@ const Navbar = () => {
             </label>
           </div>
           <div className="flex-1 ">
-            <img
-              className=" w-48"
-              src="https://i.ibb.co/LpW157k/learnifycom-high-resolution-logo-white-transparent.png"
-              alt=""
-            />
+            <Link to={'/'}>
+              <img
+                className=" w-48"
+                src="https://i.ibb.co/LpW157k/learnifycom-high-resolution-logo-white-transparent.png"
+                alt=""
+              />
+            </Link>
           </div>
           <div className="flex-none hidden lg:block">
             <ul className="flex flex-row gap-5 items-center text-white">

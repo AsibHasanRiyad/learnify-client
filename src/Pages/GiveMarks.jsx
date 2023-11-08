@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -9,6 +10,14 @@ const GiveMarks = () => {
     const form = e.target;
     const obtainedMarks = form.marks?.value;
     const feedback = form.feedback?.value;
+    if (obtainedMarks > marks) {
+      return  Swal.fire({
+        icon: "error",
+        title: "Invalid",
+        text: "Marks should not exceed the Total Marks. Please enter a valid score.",
+        // footer: '<a href="#">Why do I have this issue?</a>'
+      });
+    }
     const submittedAssignments = {
       obtainedMarks,
       feedback,
@@ -36,6 +45,9 @@ const GiveMarks = () => {
   };
   return (
     <section className="  dark:bg-gray-900">
+      <Helmet>
+      <title>Give Marks</title>
+      </Helmet>
       <div className="container px-6 py-12 mx-auto">
         <div className="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
           <div className=" text-white space-y-2">
@@ -76,7 +88,7 @@ const GiveMarks = () => {
                   Marks
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   name="marks"
                   required
                   placeholder="123"

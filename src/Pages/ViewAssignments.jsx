@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 
 const ViewAssignments = () => {
@@ -10,11 +11,14 @@ const ViewAssignments = () => {
 
   return (
     <section className=" min-h-screen mt-20">
+      <Helmet>
+      <title>View Assignment</title>
+      </Helmet>
       <div className="container px-6 pt-10 mx-auto">
         <div className="lg:flex  lg:-mx-6">
           <div className="lg:w-3/4 lg:px-6">
             <div className="flex flex-col md:flex-row justify-center items-start gap-5">
-              <img className=" w-fit" src={url} alt="" />
+              <img className=" max-w-sm rounded" src={url} alt="" />
               <div>
                 <p className="mb-6 text-2xl md:text-3xl lg:text-5xl text-white uppercase">{title}</p>
               </div>

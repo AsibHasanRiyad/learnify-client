@@ -2,6 +2,7 @@ import { FaArrowDown } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import SubmittedAssignment from "./SubmittedAssignment";
 import { AuthContext } from "../providers/Authprovider";
+import { Helmet } from "react-helmet-async";
 
 const SubmittedAssignments = () => {
   const [assignments, setAssignments] = useState([]);
@@ -24,6 +25,9 @@ const SubmittedAssignments = () => {
   // console.log(assignments);
   return (
     <div className=" px-4 md:px-8 lg:px-20 mt-10">
+      <Helmet>
+      <title>Submitted Assignments</title>
+      </Helmet>
       <h1 className=" flex justify-center items-center gap-2 text-4xl font-medium text-white text-center my-10">
         {" "}
         Submitted Assignments{" "}

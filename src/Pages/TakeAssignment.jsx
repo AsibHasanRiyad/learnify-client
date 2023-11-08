@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/Authprovider";
+import { Helmet } from "react-helmet-async";
 
 const TakeAssignment = () => {
   const data = useLoaderData();
@@ -42,6 +43,9 @@ const TakeAssignment = () => {
   };
   return (
     <section className="  dark:bg-gray-900">
+      <Helmet>
+      <title>Take Assignment</title>
+      </Helmet>
       <div className="container px-6 py-12 mx-auto">
         <div className="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
           <div className=" text-white space-y-2">
