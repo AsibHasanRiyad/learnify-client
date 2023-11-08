@@ -9,7 +9,7 @@ const SubmittedAssignments = () => {
   const [level, setLevel] = useState("all");
   const {user} = useContext(AuthContext)
   useEffect(() => {
-    fetch(`https://learnify-server-six.vercel.app/submittedAssignments`,{credentials:'include'})
+    fetch(`http://localhost:5001/submittedAssignments`,{credentials:'include'})
       .then((res) => res.json())
       .then((data) => {
         // setAssignments(data);
@@ -79,6 +79,9 @@ const SubmittedAssignments = () => {
             </>
           </tbody>
         </table>
+      </div>
+      <div className=" flex items-center justify-center mt-4 lg:mt-20">
+        <img className=" w-full md:w-1/3 h-fit" src="https://i.ibb.co/bvqndPm/u-Bk-Jpi-BAHB44.png" alt="" />
       </div>
     </div>
   );

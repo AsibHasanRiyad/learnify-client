@@ -22,7 +22,7 @@ const Assignment = ({ assignment, setAssignments, assignments}) => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed && user?.email === userEmail) {
-        fetch(`https://learnify-server-six.vercel.app/assignments/${_id}`, {
+        fetch(`http://localhost:5001/assignments/${_id}`, {
           method: "DELETE"
         })
           .then((res) => res.json())

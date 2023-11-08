@@ -3,15 +3,14 @@ import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 // Import the main component
-import { Viewer, Worker } from '@react-pdf-viewer/core';
+import { Viewer, Worker } from "@react-pdf-viewer/core";
 
 // Import the styles
-import '@react-pdf-viewer/core/lib/styles/index.css';
-
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
 const GiveMarks = () => {
   const data = useLoaderData();
-  const { title, marks, value, date, submittedBy, pdf, _id } = data;
+  const { title, marks, value, date, submitterName, pdf, _id } = data;
   const handelSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -30,7 +29,7 @@ const GiveMarks = () => {
       feedback,
       status: "Completed",
     };
-    fetch(`https://learnify-server-six.vercel.app/submittedAssignments/${_id}`, {
+    fetch(`http://localhost:5001/submittedAssignments/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -52,66 +51,127 @@ const GiveMarks = () => {
   };
   return (
     <section className="  dark:bg-gray-900">
-      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-</Worker>
+      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js"></Worker>
       <Helmet>
-      <title>Give Marks</title>
+        <title>Give Marks</title>
       </Helmet>
-      <div className="container px-6 py-12 mx-auto">
+
+      {/*  */}
+      <section className=" dark:bg-gray-900">
+        <div className="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+          <div className="w-full lg:w-1/2">
+            <div className="lg:max-w-lg">
+              <h1 className="text-3xl font-semibold tracking-wide text-gray-200 dark:text-white lg:text-4xl">
+                {title}
+              </h1>
+
+              <div className="mt-8 space-y-5">
+                <p className="flex items-center -mx-2 text-gray-200 dark:text-gray-200">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-2 text-blue-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+
+                  <span className="mx-2">Total Marks: {marks} </span>
+                </p>
+
+                <p className="flex items-center -mx-2 text-gray-200 dark:text-gray-200">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-2 text-blue-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+
+                  <span className="mx-2">Difficulty Level: {value}</span>
+                </p>
+
+                <p className="flex items-center -mx-2 text-gray-200 dark:text-gray-200">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-2 text-blue-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+
+                  <span className="mx-2">Submitted By: {submitterName}</span>
+                </p>
+                <p className="flex items-center -mx-2 text-gray-200 dark:text-gray-200">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-2 text-blue-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+
+                  <span className="mx-2">Last Submission Date: {date}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center w-full h-96 lg:w-1/2">
+            <img
+              className="object-cover w-fit lg:w-full h-fit md:h-full mx-auto rounded-md lg:max-w-2xl"
+              src="https://i.ibb.co/jL0gmL7/oie-q-JRd-T3h6t-Ewk.png"
+              alt="glasses photo"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/*  */}
+
+      <div className="container px-6 py-5 mx-auto">
         <div className="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
-          <div className=" text-white space-y-2">
-            <h1 className=" text-3xl">
-              {" "}
-              Assignment Title:{" "}
-              <span className="  text-green-400">{title} </span>
-            </h1>
-            <h1 className=" text-xl">
-              Total Marks: <span className="   text-green-400">{marks} </span>
-            </h1>
-            <h1 className=" text-xl">
-              Difficulty Level:{" "}
-              <span className="   text-green-400">{value} </span>
-            </h1>
-            <h1 className=" text-xl">
-              Last Submission Date:{" "}
-              <span className="   text-green-400">{date} </span>
-            </h1>
-            <h1 className=" text-xl">
-              Assignment Created By:{" "}
-              <span className="   text-green-400">{submittedBy} </span>
-            </h1>
-            <h1 className=" text-xl">
-              Assignment Link:{" "}
-              <a href={pdf}>
-                <span className=" text-lg text-green-400 underline">
-                  Click Here to view Assignment
-                </span>
-              </a>
+          <div
+            style={{
+              border: "1px solid rgba(0, 0, 0, 0.3)",
+              height: "460px",
+            }}
+          >
+            {" "}
+            <h1 className=" bg-white text-center text-xl font-bold">
+              Assignment Preview
             </h1>
             <Viewer fileUrl={pdf} />;
           </div>
 
-          <div className="p-4 py-6 rounded-lg bg-white dark:bg-gray-800 md:p-8">
+          <div className="p-4 py-6 rounded-lg border border-white dark:bg-gray-800 md:p-8">
             <form onSubmit={handelSubmit}>
               <div className="mt-4">
-                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                  Marks
+                <label className="block mb-2 text-sm text-gray-200 dark:text-gray-200">
+                  Marks:
                 </label>
                 <input
                   type="number"
                   name="marks"
                   required
                   placeholder="123"
-                  className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-2.5 mt-2 text-gray-200 bg-[#272181] border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
 
               <div className="w-full mt-4">
-                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                  Feedback
+                <label className="block mb-2 text-sm text-gray-200 dark:text-gray-200">
+                  Feedback:
                 </label>
                 <textarea
-                  className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-200 placeholder-gray-400 bg-[#272181] border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Feedback"
                   name="feedback"
                   required
