@@ -1,5 +1,5 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/Authprovider";
 import { updateProfile } from "firebase/auth";
@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 const Register = () => {
   const { createUser, logInWithGoogle } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate()
   const handelSubmit = (e) => {
     const toastId = toast.loading('Logging In....')
@@ -17,6 +18,26 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, email, image, password);
+    setErrorMessage("");
+    if (password.length < 6) {
+      setErrorMessage("Password should be more than 6 characters");
+      toast.error('Regex Error', {id: toastId})
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      setErrorMessage("Your Password should have at least one Uppercase");
+      toast.error('Regex Error', {id: toastId})
+      return;
+    } else if (!/[!@#$%^&*]/.test(password)) {
+      setErrorMessage(
+        "Your Password should have at least one special character - !@#$%^&*"
+      );
+      toast.error('Regex Error', {id: toastId})
+      return;
+    } else if (!/[1-9]/.test(password)) {
+      setErrorMessage("Your Password should have at least one number");
+      toast.error('Regex Error', {id: toastId})
+      return;
+    }
     createUser(email, password)
       .then((result) => {
         console.log(result);
@@ -219,6 +240,7 @@ const Register = () => {
           >
             Sign Up
           </Button>
+          <p className=" text-center py-2 text-xs text-red-500"> {errorMessage} </p>
           <Typography className="mt-4 text-center  font-normal rounded text-gray-200 ">
             Does not have an account?{" "}
             <Link to={"/login"} className="font-medium text-green-500">
