@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/Authprovider";
+import { Helmet } from "react-helmet-async";
 
 const CreateAssignment = () => {
   const {user} = useContext(AuthContext);
@@ -43,6 +44,9 @@ const CreateAssignment = () => {
   };
   return (
     <div className=" min-h-screen flex items-center justify-center">
+      <Helmet>
+        <title>Create Assignments</title>
+      </Helmet>
       <section className=" w-full lg:w-[70vw] p-6 mx-auto bg-transparent rounded-md dark:bg-gray-800">
         <h2 className="text-4xl mb-10 text-center font-semibold text-gray-200 capitalize dark:text-white">
           Create Assignments
@@ -76,7 +80,7 @@ const CreateAssignment = () => {
               <label className="text-gray-200 dark:text-gray-200">Marks</label>
               <input
                 name="marks"
-                type="text"
+                type="number"
                 required
                 className="block w-full px-4 py-3 mt-2 text-gray-600 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
