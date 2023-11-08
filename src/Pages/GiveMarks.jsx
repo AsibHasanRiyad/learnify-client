@@ -10,14 +10,14 @@ const GiveMarks = () => {
     const form = e.target;
     const obtainedMarks = form.marks?.value;
     const feedback = form.feedback?.value;
-    if (obtainedMarks > marks) {
-      return  Swal.fire({
-        icon: "error",
-        title: "Invalid",
-        text: "Marks should not exceed the Total Marks. Please enter a valid score.",
-        // footer: '<a href="#">Why do I have this issue?</a>'
-      });
-    }
+    // if (obtainedMarks > marks) {
+    //   return  Swal.fire({
+    //     icon: "error",
+    //     title: "Invalid",
+    //     text: "Marks should not exceed the Total Marks. Please enter a valid score.",
+    //     // footer: '<a href="#">Why do I have this issue?</a>'
+    //   });
+    // }
     const submittedAssignments = {
       obtainedMarks,
       feedback,

@@ -12,16 +12,18 @@ import UpdateAssignments from "../Pages/UpdateAssignments";
 import PrivateRoutes from "./PrivateRoutes";
 import TakeAssignment from "../Pages/TakeAssignment";
 import GiveMarks from "../Pages/GiveMarks";
+import ErrorPage from "../Pages/ErrorPage";
 
 
 const MainRoutes = createBrowserRouter([
     {
         path:'/',
         element:<MainLayout></MainLayout>,
+        errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
                 path:'/',
-                element:<Home></Home>
+                element:<Home></Home>,
             },
             {
                 path:'/assignments',
