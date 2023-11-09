@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { motion } from "framer-motion";
 
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -22,7 +23,7 @@ const Assignment = ({ assignment, setAssignments, assignments}) => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed && user?.email === userEmail) {
-        fetch(`http://localhost:5001/assignments/${_id}`, {
+        fetch(`https://learnify-server-six.vercel.app/assignments/${_id}`, {
           method: "DELETE"
         })
           .then((res) => res.json())
@@ -90,16 +91,20 @@ const Assignment = ({ assignment, setAssignments, assignments}) => {
       </td>
       <td>
         <Link to={`/viewAssignment/${_id}`}>
-          <button className="btn btn-ghost btn-sm hover:bg-green-500 ">
+          <motion.button 
+          whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} 
+          className="btn btn-ghost btn-sm hover:bg-green-500 ">
             View{" "}
-          </button>
+          </motion.button>
         </Link>
       </td>
       <th>
         <Link to={`/updateAssignment/${_id}`}>
-        <button className="btn btn-ghost btn-sm hover:bg-green-500">
+        <motion.button
+        whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} 
+        className="btn btn-ghost btn-sm hover:bg-green-500">
           Update
-        </button>
+        </motion.button>
         </Link>
       </th>
     </tr>

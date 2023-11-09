@@ -31,7 +31,7 @@ const TakeAssignment = () => {
     };
     // console.log(submittedAssignments);
     // console.log(title, description, marks, date, value);
-    fetch("http://localhost:5001/submittedAssignments", {
+    fetch("https://learnify-server-six.vercel.app/submittedAssignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -154,7 +154,7 @@ const TakeAssignment = () => {
                   name="pdf"
                   required
                   placeholder="assignment.pdf"
-                  className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-[#272181] border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-transparent border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
 
@@ -163,7 +163,7 @@ const TakeAssignment = () => {
                   Note
                 </label>
                 <textarea
-                  className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-[#272181] border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-transparent border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Note"
                   name="note"
                   required

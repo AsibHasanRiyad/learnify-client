@@ -12,7 +12,7 @@ const Navbar = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <div className="drawer">
+    <div style={{zIndex:10}} className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}

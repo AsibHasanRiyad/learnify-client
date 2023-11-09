@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/Authprovider";
 import { Helmet } from "react-helmet-async";
@@ -22,7 +23,7 @@ const CreateAssignment = () => {
     const assignments = { title, description, marks, url, date, value, userEmail };
     console.log(assignments);
     // console.log(title, description, marks, url, date, value);
-    fetch("http://localhost:5001/assignments", {
+    fetch("https://learnify-server-six.vercel.app/assignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -129,12 +130,13 @@ const CreateAssignment = () => {
           </div>
 
           <div className="flex justify-end mt-6">
-            <button
+            <motion.button
+            whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} 
               type="submit"
-              className="px-8 py-3 leading-5 text-[#4533CF] transition-colors duration-300 transform bg-white rounded-md hover:bg-[#684BFB] hover:text-white focus:outline-none focus:bg-green-400 focus:text-white"
+              className="px-8 py-3 leading-5 text-[#4533CF] transition-colors duration-300 transform bg-white rounded-md hover:bg-green-500 hover:text-white focus:outline-none focus:bg-green-400 focus:text-white"
             >
               Save
-            </button>
+            </motion.button>
           </div>
         </form>
       </section>

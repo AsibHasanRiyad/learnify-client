@@ -29,7 +29,7 @@ const GiveMarks = () => {
       feedback,
       status: "Completed",
     };
-    fetch(`http://localhost:5001/submittedAssignments/${_id}`, {
+    fetch(`https://learnify-server-six.vercel.app/submittedAssignments/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -58,9 +58,9 @@ const GiveMarks = () => {
 
       {/*  */}
       <section className=" dark:bg-gray-900">
-        <div className="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
-          <div className="w-full lg:w-1/2">
-            <div className="lg:max-w-lg">
+        <div className="container flex flex-col px-6 pt-10 pb-5 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+          <div className="w-full lg:w-2/3">
+            <div className="">
               <h1 className="text-3xl font-semibold tracking-wide text-gray-200 dark:text-white lg:text-4xl">
                 {title}
               </h1>
@@ -126,31 +126,19 @@ const GiveMarks = () => {
 
           <div className="flex items-center justify-center w-full h-96 lg:w-1/2">
             <img
-              className="object-cover w-fit lg:w-full h-fit md:h-full mx-auto rounded-md lg:max-w-2xl"
-              src="https://i.ibb.co/jL0gmL7/oie-q-JRd-T3h6t-Ewk.png"
+              className=" w-full md:w-1/2 mx-auto rounded-md lg:max-w-2xl"
+              src="https://i.ibb.co/0XKG3nG/s-Zt-Fglt-Ujm-Zi.png"
               alt="glasses photo"
             />
           </div>
         </div>
       </section>
 
-      {/*  */}
-
+      {/* pdf viewer */}
       <div className="container px-6 py-5 mx-auto">
-        <div className="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
-          <div
-            style={{
-              border: "1px solid rgba(0, 0, 0, 0.3)",
-              height: "460px",
-            }}
-          >
-            {" "}
-            <h1 className=" bg-white text-center text-xl font-bold">
-              Assignment Preview
-            </h1>
-            <Viewer fileUrl={pdf} />;
-          </div>
+        <div className="grid grid-cols-1 gap-12  lg:grid-cols-2">
 
+          {/* form */}
           <div className="p-4 py-6 rounded-lg border border-white dark:bg-gray-800 md:p-8">
             <form onSubmit={handelSubmit}>
               <div className="mt-4">
@@ -162,7 +150,7 @@ const GiveMarks = () => {
                   name="marks"
                   required
                   placeholder="123"
-                  className="block w-full px-5 py-2.5 mt-2 text-gray-200 bg-[#272181] border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-2.5 mt-2 text-gray-200 bg-transparent border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
 
@@ -171,7 +159,7 @@ const GiveMarks = () => {
                   Feedback:
                 </label>
                 <textarea
-                  className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-200 placeholder-gray-400 bg-[#272181] border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-200 placeholder-gray-400 bg-transparent border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Feedback"
                   name="feedback"
                   required
@@ -185,6 +173,19 @@ const GiveMarks = () => {
                 Give Marks
               </button>
             </form>
+          </div>
+
+          <div
+            style={{
+              border: "1px solid rgba(0, 0, 0, 0.3)",
+              height: "440px",
+            }}
+          >
+            {" "}
+            <h1 className=" bg-white text-center text-gray-800 text-xl py-2 font-semibold">
+              Assignment Preview
+            </h1>
+            <Viewer fileUrl={pdf} />;
           </div>
         </div>
       </div>

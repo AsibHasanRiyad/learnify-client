@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 
 // import { useContext } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 // import { AuthContext } from "../providers/Authprovider";
 
 const SubmittedAssignment = ({ assignment }) => {
-  const { title, marks, submittedBy, _id,status , submitterName} = assignment;
+  const { title, marks, submittedBy, _id, status, submitterName } = assignment;
   //   const {user} = useContext(AuthContext);
   // console.log(user?.email);
 
@@ -26,9 +27,13 @@ const SubmittedAssignment = ({ assignment }) => {
       </td>
       <th>
         <Link to={`/giveMarks/${_id}`}>
-          <button className="btn btn-ghost btn-sm hover:bg-green-500">
+          <motion.button
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.8 }}
+            className="btn btn-ghost btn-sm hover:bg-green-500"
+          >
             Give Marks
-          </button>
+          </motion.button>
         </Link>
       </th>
     </tr>

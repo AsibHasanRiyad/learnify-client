@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
       //jwt for current user
       if (currentUser) {
         axios
-          .post("http://localhost:5001/jwt", loggedUser, {
+          .post("https://learnify-server-six.vercel.app/jwt", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         axios
-          .post("http://localhost:5001/logout", loggedUser, {
+          .post("https://learnify-server-six.vercel.app/logout", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
