@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import {useScroll, motion } from "framer-motion";
 import Faq from "../components/Faq";
 import Features from "../components/Features/Features";
+import Contact from "./Contact";
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -75,7 +76,7 @@ const Home = () => {
                       is uploaded
                     </p>
 
-                    <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
+                    {/* <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
                       <input
                         id="email"
                         type="text"
@@ -86,16 +87,9 @@ const Home = () => {
                       <button className="w-full px-5 py-2 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-500 rounded-lg lg:w-auto lg:mx-4 hover:bg-blue-500 focus:outline-none focus:bg-green-500">
                         Subscribe
                       </button>
-                    </div>
+                    </div> */}
+                    <Contact />
                   </div>
-                </div>
-
-                <div className="flex items-center justify-center lg:justify-end w-full mt-6 lg:mt-0 lg:w-1/2">
-                  <img
-                    className="w-full h-full max-w-sm"
-                    src="https://merakiui.com/images/components/Email-campaign-bro.svg"
-                    alt="email illustration vector art"
-                  />
                 </div>
               </div>
             </div>

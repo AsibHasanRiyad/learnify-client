@@ -44,7 +44,7 @@ const Assignments = () => {
   return (
     <div className=" px-4 md:px-8 lg:px-20 mt-10">
       <Helmet>
-        <title>Assignment</title>
+        <title>Assignments</title>
       </Helmet>
       <h1 className=" flex justify-center items-center gap-2 text-4xl font-medium text-white text-center my-10">
         {" "}
