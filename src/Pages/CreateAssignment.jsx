@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
-import { AuthContext } from "../providers/Authprovider";
+// import { AuthContext } from "../providers/Authprovider";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../providers/AuthProvider";
 
 const CreateAssignment = () => {
   const {user} = useContext(AuthContext);
@@ -23,7 +24,7 @@ const CreateAssignment = () => {
     const assignments = { title, description, marks, url, date, value, userEmail };
     console.log(assignments);
     // console.log(title, description, marks, url, date, value);
-    fetch("https://learnify-server-six.vercel.app/assignments", {
+    fetch("http://localhost:5001/assignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",

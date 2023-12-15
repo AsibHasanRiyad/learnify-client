@@ -31,8 +31,8 @@ const Contact = () => {
       <div className="container px-6 mx-auto">
         <div className="lg:flex lg:items-start lg:-mx-6">
           <div className="lg:w-1/2 lg:mx-6 ">
-            <h1 className=" text-green-400 text-5xl font-bold ">
-              Get In Touch
+            <h1 className=" text-gray-200 text-5xl font-bold ">
+              Share your <span className="text-green-500">ideas</span> and complain about our services
             </h1>
           </div>
 

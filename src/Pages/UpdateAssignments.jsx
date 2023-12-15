@@ -34,7 +34,7 @@ const UpdateAssignment = () => {
     const updatedData = { title, description, marks, url, date, level };
     // console.log(updatedData);
     if (email === userEmail) {
-      fetch(`https://learnify-server-six.vercel.app/assignments/${_id}`, {
+      fetch(`http://localhost:5001/assignments/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
