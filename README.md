@@ -11,7 +11,7 @@ across various devices, including mobile, tablet, and computer.
 
 ## Live Link
 
-https://learnify-926e4.web.app/
+https://horrible-root.surge.sh/
 
 
 ## Features
