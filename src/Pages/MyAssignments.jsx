@@ -1,15 +1,16 @@
 import { FaArrowDown } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/Authprovider";
 import MyAssignment from "./MyAssignment";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../providers/AuthProvider";
 
 const MyAssignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [level, setLevel] = useState("all");
   const {user} = useContext(AuthContext)
+  // console.log(user);
   useEffect(() => {
-    fetch(`http://localhost:5001/submittedAssignments?submittedBy=${user?.email}`,{credentials:'include'})
+    fetch(`https://learnify-server-two.vercel.app/submittedAssignments?submittedBy=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setAssignments(data);

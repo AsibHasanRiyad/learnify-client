@@ -22,9 +22,9 @@ const CreateAssignment = () => {
     const url = form.url.value;
     const date = form.date.value;
     const assignments = { title, description, marks, url, date, value, userEmail };
-    console.log(assignments);
+    // console.log(assignments);
     // console.log(title, description, marks, url, date, value);
-    fetch("http://localhost:5001/assignments", {
+    fetch("https://learnify-server-two.vercel.app/assignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -33,7 +33,7 @@ const CreateAssignment = () => {
     })
     .then(res => res.json())
     .then(data =>{
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
             Swal.fire({
                 icon: "success",

@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import {useScroll, motion } from "framer-motion";
 import Faq from "../components/Faq";
 import Features from "../components/Features/Features";
-import Contact from "./Contact";
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -88,7 +87,6 @@ const Home = () => {
                         Subscribe
                       </button>
                     </div> */}
-                    <Contact />
                   </div>
                 </div>
               </div>

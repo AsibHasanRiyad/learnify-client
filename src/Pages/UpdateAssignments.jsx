@@ -34,7 +34,7 @@ const UpdateAssignment = () => {
     const updatedData = { title, description, marks, url, date, level };
     // console.log(updatedData);
     if (email === userEmail) {
-      fetch(`http://localhost:5001/assignments/${_id}`, {
+      fetch(`https://learnify-server-two.vercel.app/assignments/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -43,7 +43,7 @@ const UpdateAssignment = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           if (data.modifiedCount) {
             Swal.fire({
               icon: "success",

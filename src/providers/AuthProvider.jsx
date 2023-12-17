@@ -47,25 +47,25 @@ const AuthProvider = ({ children }) => {
       const loggedUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
-      console.log(currentUser);
+      // console.log(currentUser);
 
       //jwt for current user
       if (currentUser) {
         axios
-          .post("http://localhost:5001/jwt", loggedUser, {
+          .post("https://learnify-server-two.vercel.app/jwt", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
-            console.log("jwt response", res.data);
+            // console.log("jwt response", res.data);
           });
       }
        else {
         axios
-          .post("http://localhost:5001/logout", loggedUser, {
+          .post("https://learnify-server-two.vercel.app/logout", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
           });
       }
     });

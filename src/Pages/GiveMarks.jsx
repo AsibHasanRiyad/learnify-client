@@ -29,7 +29,7 @@ const GiveMarks = () => {
       feedback,
       status: "Completed",
     };
-    fetch(`http://localhost:5001/submittedAssignments/${_id}`, {
+    fetch(`https://learnify-server-two.vercel.app/submittedAssignments/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -15,15 +15,15 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log( email,password);
+    // console.log( email,password);
     logIn(email, password)
     .then(result =>{
-      console.log(result);
+      // console.log(result);
       toast.success('Logged In...', {id: toastId});
       navigate(location?.state ? location?.state : '/')
     })
     .catch(error =>{
-      console.log(error);
+      // console.log(error);
       toast.error(error.message, {id: toastId})
     })
   };
@@ -32,12 +32,12 @@ const Login = () => {
       const toastId = toast.loading('Logging In....')
       logInWithGoogle()
         .then((result) => {
-          console.log(result);
+          // console.log(result);
           toast.success('Logged In...', {id: toastId});
           navigate(location?.state ? location?.state : '/')
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
           toast.error(error.message, {id: toastId})
         });
     };

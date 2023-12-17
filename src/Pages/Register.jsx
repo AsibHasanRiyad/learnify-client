@@ -17,7 +17,7 @@ const Register = () => {
     const image = form.url.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, image, password);
+    // console.log(name, email, image, password);
     setErrorMessage("");
     if (password.length < 6) {
       setErrorMessage("Password should be more than 6 characters");
@@ -40,7 +40,7 @@ const Register = () => {
     }
     createUser(email, password)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         updateProfile(result.user, {
           displayName: name,
           photoURL: image,
@@ -49,7 +49,7 @@ const Register = () => {
       navigate(location?.state ? location?.state : '/')
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error(error.message, {id: toastId})
       });
   };
@@ -58,12 +58,12 @@ const Register = () => {
     const toastId = toast.loading('Logging In....')
     logInWithGoogle()
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         toast.success('Logged In...', {id: toastId});
       navigate(location?.state ? location?.state : '/')
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error(error.message, {id: toastId})
       });
   };

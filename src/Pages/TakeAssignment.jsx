@@ -31,7 +31,7 @@ const TakeAssignment = () => {
     };
     // console.log(submittedAssignments);
     // console.log(title, description, marks, date, value);
-    fetch("http://localhost:5001/submittedAssignments", {
+    fetch("https://learnify-server-two.vercel.app/submittedAssignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",

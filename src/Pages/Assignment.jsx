@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AuthContext } from "../providers/Authprovider";
+import { AuthContext } from "../providers/AuthProvider";
+
 
 const Assignment = ({ assignment, setAssignments, assignments}) => {
   const { title, marks, url, value, userEmail, _id } = assignment;
@@ -23,12 +24,12 @@ const Assignment = ({ assignment, setAssignments, assignments}) => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed && user?.email === userEmail) {
-        fetch(`http://localhost:5001/assignments/${_id}`, {
+        fetch(`https://learnify-server-two.vercel.app/assignments/${_id}`, {
           method: "DELETE"
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data)
+            // console.log(data)
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
@@ -37,7 +38,7 @@ const Assignment = ({ assignment, setAssignments, assignments}) => {
               });
             }
             const remaining = assignments.filter( assignment => assignment._id !== _id);
-            console.log(remaining);
+            // console.log(remaining);
             setAssignments(remaining)
           });
       }

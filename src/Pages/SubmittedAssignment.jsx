@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 
-// import { useContext } from "react";
+import { useContext } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../providers/Authprovider";
+import { AuthContext } from "../providers/AuthProvider";
 
 const SubmittedAssignment = ({ assignment }) => {
   const { title, marks, submittedBy, _id, status, submitterName } = assignment;
-  //   const {user} = useContext(AuthContext);
-  // console.log(user?.email);
+    const {user} = useContext(AuthContext);
+  console.log(user?.email);
 
   return (
     <tr className=" text-white">

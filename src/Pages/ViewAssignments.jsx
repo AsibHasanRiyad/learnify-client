@@ -4,9 +4,9 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 const ViewAssignments = () => {
   const { id } = useParams();
   const loadedData = useLoaderData();
-  console.log(id, loadedData);
+  // console.log(id, loadedData);
   const data = loadedData.find((data) => data._id === id);
-  console.log(data);
+  // console.log(data);
   const { title, url, description, userEmail, value, marks, _id } = data;
 
   return (
